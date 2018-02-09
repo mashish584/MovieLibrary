@@ -1,0 +1,34 @@
+<h2>{{(editMode)?'Edit Movie':'Add Movie'}}</h2>
+<form [formGroup] = "movieForm" (ngSubmit)="addMovie()">
+    <div *ngIf="error" class="flash-error">{{error}}</div>
+    <div class="form-group">
+        <label for="title">Title</label>
+        <input type="text" name="title" formControlName="title">
+    </div>
+    <div class="form-group">
+        <label for="description">Description</label>
+        <textarea name="description" formControlName="description"></textarea>
+        <span class="message" *ngIf="movieForm.get('description').touched && movieForm.get('description').invalid && !movieForm.get('description').errors.required">Description should have minimum length of 275.</span>
+    </div>
+    <label for="">Year</label>
+    <div class="form-group year-group">
+        <input type="text" name="date" formControlName="date" placeholder="DD">
+        <input type="text" name="month" formControlName="month" placeholder="MM">
+        <input type="text" name="year" formControlName="year" placeholder="YYYY">
+    </div>
+    <div class="form-group">
+        <label for="director">Director</label>
+        <input type="text" name="director" formControlName="director">
+    </div>
+    <div class="form-group clrfx" formArrayName="producers">
+        <label for="producers">Producers</label>
+        <input type="text" *ngFor="let producer of movieForm.get('producers').controls;let i=index;" [formControlName]="i">
+        <button type="button" class="add-btn fa fa-plus" (click)="addField('prod')"> Add</button>
+    </div>
+    <div class="form-group clrfx" formArrayName="actors">
+        <label for="actors">Actors</label>
+        <input type="text" *ngFor="let producer of movieForm.get('actors').controls;let i=index;" [formControlName]="i">
+        <button type="button" class="add-btn fa fa-plus" (click)="addField('act')"> Add</button>
+    </div>
+    <button [disabled]="movieForm.invalid" type="submit">{{(editMode)?'Edit Movie':'Add Movie'}}</button>
+</form>

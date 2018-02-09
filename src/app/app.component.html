@@ -1,0 +1,8 @@
+<div class="header">
+  <span class="title">Movie Library</span>
+  <a routerLink="/library" routerLinkActive="active">Home</a>
+  <a *ngIf="isUser" routerLink="/movie/add" routerLinkActive="active">Add Movie</a>
+  <a *ngIf="!isUser" routerLink="/auth" routerLinkActive="active">Log In</a>
+  <a *ngIf="isUser" (click)="logout()" routerLinkActive="active">Log Out</a>
+</div>
+<router-outlet></router-outlet>

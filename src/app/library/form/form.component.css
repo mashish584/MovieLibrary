@@ -1,0 +1,88 @@
+h2{
+    margin-top: 100px;
+    text-align: center;
+}
+
+form{
+    width: 500px;
+    background: white;
+    padding: 15px 25px;
+    margin:25px auto;
+}
+
+.form-group{
+    margin: 15px auto;
+}
+
+.year-group{
+    width: 50%;
+    display: flex;
+    margin: 10px 0;
+}
+
+.year-group input{
+    margin: 5px;
+    flex:1;
+}
+
+.year-group input:last-child{
+    flex-grow: 2;
+}
+
+input,
+textarea,
+button,
+label{
+    display: block;
+    width: 100%;
+    resize: none;
+    margin:5px 0;
+    transform: 100ms linear;
+}
+
+input,
+textarea{
+    padding: 10px;
+    background:transparent;
+    border:1px solid #a9a9a9;
+}
+
+textarea{
+    height: 70px;
+}
+
+input:focus,
+textarea:focus{
+    border-color: #dcdcdc;
+    background: #fff;
+}
+
+button{
+    padding: 15px;
+    background: blueviolet;
+    border: none;
+    color: #fff;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 25px 0;
+    cursor: pointer;
+}
+
+.message{
+    color:rgb(20, 20, 220);
+    font-size: 0.9em;
+}
+
+.add-btn{
+    width: auto;
+    padding: 5px 10px;
+    float: right;
+    margin: 5px;
+    background:dodgerblue;
+}
+
+input.ng-touched.ng-invalid,
+textarea.ng-touched.ng-invalid{
+    border:1px solid red;
+}

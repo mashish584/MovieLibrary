@@ -1,0 +1,14 @@
+<h2>Log In Now</h2>
+<form (ngSubmit)="logIn(f)"  #f="ngForm">
+    <div *ngIf="error" class="flash-error">{{error}}</div>
+    <div class="form-group">
+      <label for="">Email</label>
+      <input type="email" name="email" ngModel required>
+    </div>
+    <div class="form-group">
+      <label for="">Password</label>
+      <input type="password" name="password" ngModel required>
+    </div>
+  <button type="submit" [disabled]="f.invalid">SIGN IN</button>
+  <span>Don't have an account ? Create <a routerLink="/auth/signup">one</a></span>
+</form>

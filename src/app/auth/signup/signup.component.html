@@ -1,0 +1,18 @@
+<h2>Sign Up Now</h2>
+<form (ngSubmit)="signUp(f)" #f="ngForm">
+    <div class="flash-error" *ngIf="errorState">{{error}}</div>
+    <div class="form-group">
+      <label for="">Email</label>
+      <input type="email" name="email" ngModel required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
+    </div>
+    <div class="form-group">
+      <label for="">Password</label>
+      <input type="password" #password name="password" ngModel required>
+    </div>
+    <div class="form-group">
+      <label for="">Confirm Password</label>
+      <input type="password" name="confirmPassword" #confirm (keyup)="validatePass(password.value,confirm.value)" ngModel required>
+    </div>
+  <button [disabled]="f.invalid || errorState" type="submit">SIGN UP</button>
+  <span>Already have an account ? Login <a routerLink="/auth/login">now</a></span>
+</form>

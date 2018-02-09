@@ -1,0 +1,61 @@
+/* You can add global styles to this file, and also import other style files */
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+
+*:focus{
+    outline: none;
+}
+
+body{
+    background:#f7f1f1e2;
+    font-family: 'Montserrat', sans-serif;
+}
+
+a{
+    text-decoration: none;
+}
+
+button{
+    border:none;
+    padding: 15px;
+    cursor: pointer;
+}
+
+/* Wrapper-Layer */
+#wrapper-layer{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0,0,0,0.8);
+}
+
+/* Flashes */
+.flash-error{
+    background: #ff0000a6;
+    color: #fff;
+    padding: 5px 10px;
+    margin: 15px auto;
+}
+
+.flash-success{
+    background: #2aff3bb3;
+    color: #fff;
+    padding: 5px 10px;
+    margin: 15px auto;
+}
+
+
+/* clearfix */
+.clrfx:after{
+    content: "";
+    display: table;
+    clear: both;
+}
+

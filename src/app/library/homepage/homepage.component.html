@@ -1,0 +1,21 @@
+<!-- <div id="{{showBG == true ? 'wrapper-layer': ''}}"> -->
+
+    <div class="movies-gallery">
+
+        <div *ngFor="let movie of movies | async" class="movie" (click)="showDetails(movie.key)">
+            <img src="https://unsplash.it/500/500" alt="">
+            <span class="title">{{movie.title}}</span>
+            <div class="description">{{movie.description | slice:0:125}}..</div>
+        </div>
+
+    </div>
+
+    <div
+        infiniteScroll
+        [infiniteScrollDistance] = "2"
+        [infiniteScrollThrottle] = "2000"
+        (scrolled) = "onScroll()"></div>
+
+    <app-loader *ngIf="!finished"></app-loader>
+    <p *ngIf="empty" style="text-align:center;">No Movies found.</p>
+<!-- </div> -->
