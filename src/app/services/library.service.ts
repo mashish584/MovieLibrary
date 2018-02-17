@@ -3,10 +3,19 @@ import { AngularFireDatabase } from "angularfire2/database";
 import { AngularFireList } from 'angularfire2/database';
 import { Movie } from './../models/movie.model';
 import { error } from 'util';
+import { Subject } from 'rxjs/Subject';
 
 
 @Injectable()
 export class LibraryService{
+
+    // crating subject property
+    updateData = new Subject<any>();
+
+    updateSubject(){
+        console.log("Call to Update Subject");
+        this.updateData.next("WOW IT WORKS");
+    }
 
     constructor(private db:AngularFireDatabase){}
 
@@ -89,6 +98,11 @@ export class LibraryService{
                         });
                         return error;
                     })
+    }
+
+    // Delete movie
+    deleteMovie(id){
+        this.getAllMovies().remove(id);
     }
 
 }

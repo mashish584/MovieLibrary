@@ -1,6 +1,7 @@
  <div class="single-movie--container">
     <img src="https://unsplash.it/500/500" class="single-movie--image">
     <button class="edit-btn" (click)="editMode()"><span class="fa fa-edit"></span> Edit</button>
+    <button class="dlt-btn" (click)="deleteMode()"><span class="fa fa-trash"></span> Delete</button>
     <h2 class="single-movie--heading">{{movie?.title}}</h2>
     <p class="single-movie--desc">{{movie?.description}}</p>
     <button class="close-single fa fa-close" (click)="closeRoute()"></button>

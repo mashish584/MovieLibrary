@@ -27,11 +27,16 @@
     color:#fff;
 }
 
-.edit-btn{
+.edit-btn,
+.dlt-btn{
     float: right;
     margin-top: -5px;
     background:rgb(17, 17, 255);
     color:#fff;
+}
+
+.dlt-btn{
+    background:rgb(255, 17, 17);
 }
 
 

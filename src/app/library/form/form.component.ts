@@ -14,8 +14,7 @@ import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
-  styleUrls: ['./form.component.css'],
-  providers:[LibraryService]
+  styleUrls: ['./form.component.css']
 })
 export class FormComponent implements OnInit {
 
@@ -28,8 +27,7 @@ export class FormComponent implements OnInit {
   constructor(private authService:AuthService,
               private router:Router,
               private libraryService:LibraryService,
-              private actRoute:ActivatedRoute,
-              private library:LibraryService) {
+              private actRoute:ActivatedRoute) {
   }
 
   ngOnInit() {
@@ -42,7 +40,7 @@ export class FormComponent implements OnInit {
     this.actRoute.params.subscribe((data) => {
       if(data.id){
         this.editMode = true;
-        this.library.getMovie(data.id)
+        this.libraryService.getMovie(data.id)
             .subscribe((content) => {
                 this.id = content.key;
                 this.movie = {...content.payload.val()};
@@ -55,7 +53,7 @@ export class FormComponent implements OnInit {
 
 
   constructForm(){
-     let date = ["00","00","0000"],
+     let date = ["","",""],
          actors = [new FormControl(null,Validators.required)],
          producers = [new FormControl(null,Validators.required)];
 

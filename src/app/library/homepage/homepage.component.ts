@@ -33,10 +33,17 @@ export class HomepageComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.libraryService.updateData
+          .subscribe((value) => {
+              this.movies.next([]);
+              this.empty = false;
+              this.lastKey = "";
+              this.finished = false;
+              this.getMovies();
+          })
   }
 
   onScroll(){
-    console.log("Scrolled");
     this.getMovies();
   }
 
@@ -45,6 +52,7 @@ export class HomepageComponent implements OnInit {
   }
 
   private getMovies(key?){
+      console.log("GET MOVIES CALLED");
       if(this.finished) return;
       this.libraryService
           .getMovies(this.batch+1,this.lastKey).snapshotChanges()

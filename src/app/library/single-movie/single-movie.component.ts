@@ -17,17 +17,19 @@ export class SingleMovieComponent implements OnInit{
   description;
   constructor(private router:Router,
               private actRoute:ActivatedRoute,
-              private library:LibraryService ){}
+              private libraryService:LibraryService ){}
 
   ngOnInit(){
       this.actRoute.params
           .subscribe((data) =>{
               this.id = data.id;
-              this.library.getMovie(this.id)
+              this.libraryService.getMovie(this.id)
                   .subscribe((movie) => {
-                      this.movie = {key:movie.key,...movie.payload.val()};
-                      this.title = this.movie.title;
-                      this.description  = this.movie.description;
+                      if(movie){
+                        this.movie = {key:movie.key,...movie.payload.val()};
+                        this.title = this.movie.title;
+                        this.description  = this.movie.description;
+                      }
                   });
           })
   }
@@ -38,6 +40,12 @@ export class SingleMovieComponent implements OnInit{
 
   editMode(){
     this.router.navigate(['/movie/edit',this.id]);
+  }
+
+  deleteMode(){
+    this.libraryService.deleteMovie(this.id);
+    this.libraryService.updateSubject();
+    this.router.navigate(['']);
   }
 
 }
