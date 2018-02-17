@@ -22,12 +22,12 @@ import { AuthGuard } from './auth/guards/auth-guard.service';
 import { UnAuthGuard } from './auth/guards/unauth-guard.service';
 
 export const config = {
-  apiKey: "AIzaSyAa5OrXF8UA5jf82J7Ctt6yA9wzO2Jqcl4",
-  authDomain: "movielibrary-4978c.firebaseapp.com",
-  databaseURL: "https://movielibrary-4978c.firebaseio.com",
-  projectId: "movielibrary-4978c",
-  storageBucket: "movielibrary-4978c.appspot.com",
-  messagingSenderId: "186528599196"
+  apiKey: "##############",
+  authDomain: "##############",
+  databaseURL: "##############",
+  projectId: "##############",
+  storageBucket: "##############",
+  messagingSenderId: "##############"
 };
 
 @NgModule({
