@@ -12,12 +12,14 @@ export class LibraryService{
     // crating subject property
     updateData = new Subject<any>();
 
+    constructor(private db:AngularFireDatabase){}
+
+    //Subject Method for data change notification
+    //in component
     updateSubject(){
         console.log("Call to Update Subject");
         this.updateData.next("WOW IT WORKS");
     }
-
-    constructor(private db:AngularFireDatabase){}
 
     //get all movies
     getAllMovies(){
@@ -54,16 +56,15 @@ export class LibraryService{
     //save movie in firebase
     saveMovie(movie){
         return this.getAllMovies().valueChanges()
-                   .take(1)
                    .map(data => {
                         let error;
                         if(data.length == 0){
-                            //push movie if there is no data
+                            //push movie if there is no movie in db
                             this.getAllMovies().push(movie);
                             error = false;
                         }else{
                            data.map((item) => {
-                               //check for exist title
+                               //check for exist title if there is movies in db
                                if(item.title.toLowerCase() == movie.title.toLowerCase()){
                                     error = true;
                                }
@@ -82,11 +83,11 @@ export class LibraryService{
     //update movie with proper validation
     updateMovie(movie,key){
         return this.getAllMovies().snapshotChanges()
-                    .take(1)
                     .map(movies => {
                         let error;
                         movies.forEach(data => {
                             let item = {...data.payload.val()};
+                            //check if movie name is unique
                             if(item.title.toLowerCase() == movie.title.toLowerCase() && data.key !== key){
                                 error = true;
                             }else{
@@ -104,5 +105,6 @@ export class LibraryService{
     deleteMovie(id){
         this.getAllMovies().remove(id);
     }
+
 
 }

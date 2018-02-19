@@ -28,7 +28,6 @@ export class HomepageComponent implements OnInit {
               private actRoute:ActivatedRoute,
               private auth:AuthService,
               private libraryService:LibraryService) {
-      // this.movies = this.library.getAllMovies();
       this.getMovies();
   }
 
@@ -52,7 +51,6 @@ export class HomepageComponent implements OnInit {
   }
 
   private getMovies(key?){
-      console.log("GET MOVIES CALLED");
       if(this.finished) return;
       this.libraryService
           .getMovies(this.batch+1,this.lastKey).snapshotChanges()

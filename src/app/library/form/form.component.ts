@@ -51,24 +51,28 @@ export class FormComponent implements OnInit {
 
   }
 
+  //Constructor Form function for construction our
+  //movie form for both edit and add Mode
+  private constructForm(){
 
-  constructForm(){
-     let date = ["","",""],
+    let date = ["","",""],
          actors = [new FormControl(null,Validators.required)],
          producers = [new FormControl(null,Validators.required)];
 
-    //get dd/mm/yyyy from year
+    //If we're in editMode we have to add
+    //Movie details in a form
     if(this.editMode){
-      date = this.movie.year.split('/');
-      producers = [];
-      actors = [];
-      this.movie.producers.map(producer => {
-        producers.push(new FormControl(producer,Validators.required));
-      });
-      this.movie.actors.map(actor => {
-        actors.push(new FormControl(actor,Validators.required));
-      });
+        date = this.movie.year.split('/');
+        producers = [];
+        actors = [];
+        this.movie.producers.map(producer => {
+          producers.push(new FormControl(producer,Validators.required));
+        });
+        this.movie.actors.map(actor => {
+          actors.push(new FormControl(actor,Validators.required));
+        });
     }
+
     //Initializing movie form in component
     this.movieForm = new FormGroup({
       'title' : new FormControl(this.movie.title,Validators.required),
@@ -100,7 +104,9 @@ export class FormComponent implements OnInit {
     });
   }
 
-  addField(type){
+
+  //More fields adding funtion in Array FormControl
+  private addField(type){
     const control = new FormControl(null,Validators.required);
     if(type == "prod"){
       (<FormArray> this.movieForm.get('producers')).push(control);
@@ -117,6 +123,8 @@ export class FormComponent implements OnInit {
      const[date,month,year] = [form.get('date').value,
                                form.get('month').value,
                                form.get('year').value];
+
+     //Movie Object we're going to save
      this.movie = new Movie(
                       form.get('title').value,
                       form.get('description').value,
@@ -125,6 +133,10 @@ export class FormComponent implements OnInit {
                       form.get('producers').value,
                       `${date}/${month}/${year}`);
 
+   //Not in EditMode save data as a new data
+   //and redirect user back to homepage
+   //ELSE
+   //In EditMode update the current content of movie
    if(!this.editMode){
        this.libraryService
         .saveMovie(this.movie)
